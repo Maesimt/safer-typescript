@@ -1,0 +1,32 @@
+{
+  "name": "safer-typescript",
+  "version": "1.0.0",
+  "description": "Tricks for using strong types in typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maesimt/safer-typescript.git"
+  },
+  "keywords": [
+    "typescript",
+    "demo"
+  ],
+  "author": "Guillaume Cummings",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Maesimt/safer-typescript/issues"
+  },
+  "homepage": "https://github.com/Maesimt/safer-typescript#readme",
+  "dependencies": {
+    "@types/node": "^16.11.6",
+    "axios": "^0.24.0",
+    "fp-ts": "^2.11.5",
+    "io-ts": "^2.2.16",
+    "io-ts-reporters": "^2.0.0",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  }
+}
