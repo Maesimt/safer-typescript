@@ -134,32 +134,25 @@
 // # Chapter 2. Parsing 
 // IO-TS handles the parsing
 // --------------------------------
-import { isRight, } from 'fp-ts/lib/Either';
-import * as t from 'io-ts'
-import * as D from "io-ts/Decoder"
-import reporter from 'io-ts-reporters'
-import { pipe } from 'fp-ts/function'
-import { fold } from 'fp-ts/Either'
-import * as E from 'fp-ts/Either'
-import { flow } from 'fp-ts/function'
-import { failure } from 'io-ts/PathReporter'
+import axios from 'axios';
+import { decode } from './decoder';
+import * as t from 'io-ts';
 
-const User = t.interface({name: t.string})
+const MuseumInventory = t.type({
+    totals: t.number
+});
 
-const validations = User.decode({name: "swag"});
+const getKickstarters = async (): Promise<t.TypeOf<typeof MuseumInventory>> => {
+    // We could type this, this won't fix the problem.
+    const response = await axios.get("https://collectionapi.metmuseum.org/public/collection/v1/objects");
 
-export function decode<I, A>(codec: t.Decoder<I, A>): (value: I) => A {
-    return (value: I) => {
-        const result = codec.decode(value);
+    return decode(MuseumInventory)(response);
+}
 
-        if (E.isLeft(result)) {
-            throw new Error(reporter.report(result).reduce((a,b) => a + "\n" + b));
-        } else {
-            return result.right
-        }
-    }
-  }
+const someParent = async () => {
+    const museumInventory = await getKickstarters();
 
-const a = decode(User)({});
+    console.log(`The museum has ${museumInventory.totals} items`);
+}
 
-
+someParent();
