@@ -4,7 +4,7 @@
   "description": "Tricks for using strong types in typescript",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -21,11 +21,14 @@
   },
   "homepage": "https://github.com/Maesimt/safer-typescript#readme",
   "dependencies": {
+    "@types/jest": "^27.0.3",
     "@types/node": "^16.11.6",
     "axios": "^0.24.0",
     "fp-ts": "^2.11.5",
     "io-ts": "^2.2.16",
     "io-ts-reporters": "^2.0.0",
+    "jest": "^27.4.3",
+    "ts-jest": "^27.1.0",
     "ts-node": "^10.4.0",
     "typescript": "^4.4.4"
   }

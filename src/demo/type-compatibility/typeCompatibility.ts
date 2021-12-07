@@ -1,5 +1,5 @@
 // -------------------------------
-// # Chapter 1. Type compatibility  
+// # Chapter 1. Type compatibility
 // The problem
 // --------------------------------
 // type Person = {
@@ -26,7 +26,7 @@
 //    anonymous objects.
 
 // -------------------------------
-// # Chapter 1. Type compatibility  
+// # Chapter 1. Type compatibility
 // The tag/branded technique
 // --------------------------------
 // type Person = {
@@ -50,9 +50,8 @@
 // someFunction(aPerson);
 // someFunction(aCar);
 
-
 // -------------------------------
-// # Chapter 1. Type compatibility  
+// # Chapter 1. Type compatibility
 // The class technique
 // --------------------------------
 // class Person {
@@ -75,7 +74,7 @@
 // someFunction(new Car());
 
 // -------------------------------
-// # Chapter 2. Parsing 
+// # Chapter 2. Parsing
 // The problem
 // --------------------------------
 // import axios from 'axios';
@@ -100,7 +99,7 @@
 // someParent();
 
 // -------------------------------
-// # Chapter 2. Parsing 
+// # Chapter 2. Parsing
 // Manual parsing
 //       !! TODO  !!
 // --------------------------------
@@ -129,30 +128,3 @@
 // }
 
 // someParent();
-
-// -------------------------------
-// # Chapter 2. Parsing 
-// IO-TS handles the parsing
-// --------------------------------
-import axios from 'axios';
-import { decode } from './decoder';
-import * as t from 'io-ts';
-
-const MuseumInventory = t.type({
-    totals: t.number
-});
-
-const getKickstarters = async (): Promise<t.TypeOf<typeof MuseumInventory>> => {
-    // We could type this, this won't fix the problem.
-    const response = await axios.get("https://collectionapi.metmuseum.org/public/collection/v1/objects");
-
-    return decode(MuseumInventory)(response);
-}
-
-const someParent = async () => {
-    const museumInventory = await getKickstarters();
-
-    console.log(`The museum has ${museumInventory.totals} items`);
-}
-
-someParent();
